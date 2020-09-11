@@ -86,6 +86,7 @@ namespace Vigenere.Library
                 {
                     break;
                 }
+                result++;
             }
             return result;
         }
