@@ -11,6 +11,7 @@ namespace Vigenere.Library
         public VigenereCode(string codeWord, int salt)
         {
             this.codeWord = codeWord;
+            this.salt=salt;
         }
         public string Encrypt(string encryptedPrhase)
         {
@@ -20,13 +21,13 @@ namespace Vigenere.Library
                 //Se obtiene la letra a encriptar
                 string valueToEncrypt = encryptedPrhase[i].ToString().ToUpper();
                 //se obtiene la letra utilizada para encriptar (clave)
-                string key = codeWord[i%codeWord.Length].ToString();
+                string key = codeWord[i%codeWord.Length].ToString().ToUpper();
                 //Se obtiene la posicion de la letra clave
                 int keyPosition = GetLetterNumber(key);
                 //Se encripta el valor aplicando el desplazamiento
                 string encrypted = Shift(keyPosition + salt, valueToEncrypt);
                 //Se agrega el resultado a la cadena encriptada
-                decrypted.Append(valueToEncrypt);
+                decrypted.Append(encrypted);
             }
             return decrypted.ToString();
         }
@@ -38,7 +39,7 @@ namespace Vigenere.Library
                 //Se obtiene la letra a desencriptar
                 string valueToDecrypt = encryptedPrhase[i].ToString().ToUpper();
                 //se obtiene la letra utilizada para encriptar (clave)
-                string key = codeWord[i%codeWord.Length].ToString();
+                string key = codeWord[i%codeWord.Length].ToString().ToUpper();
                 //Se obtiene la posicion de la letra clave
                 int keyPosition = GetLetterNumber(key);
                 //Se desencripta el valor invirtiendo el desplazamiento
